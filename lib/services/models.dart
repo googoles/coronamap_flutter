@@ -1,24 +1,24 @@
-class Store{
-  int count;
-  List<StoreLocation> data;
+//class Store{
+//  int count;
+//  List<StoreLocation> data;
+//
+//  Store({this.count, this.data});
+//
+//  factory Store.fromJson(Map<String, dynamic> parsedJson){
+//
+//    var list = parsedJson['data'] as List;
+//    List<StoreLocation> data = list.map((i) => StoreLocation.fromJson(i)).toList();
+//
+//    return Store(
+//        count: parsedJson['count'],
+//        data: data
+//    );
+//  }
+//}
 
-  Store({this.count, this.data});
-
-  factory Store.fromJson(Map<String, dynamic> parsedJson){
-
-    var list = parsedJson['data'] as List;
-    List<StoreLocation> data = list.map((i) => StoreLocation.fromJson(i)).toList();
-
-    return Store(
-        count: parsedJson['count'],
-        data: data
-    );
-  }
-}
 
 
-
-class StoreLocation{
+class Stores{
   String addr;
   int lat;
   int lng;
@@ -27,11 +27,11 @@ class StoreLocation{
   String stock_at;
   String type;
 
-  StoreLocation({this.addr, this.lat, this.lng, this.name, this.remain_stat,
+  Stores({this.addr, this.lat, this.lng, this.name, this.remain_stat,
     this.stock_at, this.type});
 
-  factory StoreLocation.fromJson(Map<String, dynamic> parsedJson){
-    return StoreLocation(
+  factory Stores.fromJson(Map<String, dynamic> parsedJson){
+    return Stores(
       addr: parsedJson['addr'],
       lat: parsedJson['lat'],
       lng: parsedJson['lng'],
@@ -40,6 +40,11 @@ class StoreLocation{
       stock_at: parsedJson['stock_at'],
       type: parsedJson['type'],
     );
+  }
+
+  @override
+  String toString() {
+    return '${this.addr},${this.lat},${this.lng},${this.name},${this.remain_stat},${this.stock_at},${this.type},';
   }
 
 }

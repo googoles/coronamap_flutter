@@ -21,8 +21,23 @@ class GetMaskData {
     // ?lat=35.9674&lng=126.71&m=500
     var maskData = await networkHelper.getData();
 
-    print(maskData);
-    return maskData;
+//    print(maskData);
+    return maskData['stores'];
   }
+
+  Future<dynamic> getLocationMaskDefault() async {
+
+    Location location = Location();
+    await location.getCurrentLocation();
+    NetworkHelper networkHelper = NetworkHelper(
+        '$maskUrl?lat=${location.latitude}&lng=${location.longitude}&m=500');
+
+    // ?lat=35.9674&lng=126.71&m=500
+    var maskData = await networkHelper.getData();
+
+//    print(maskData);
+    return maskData['stores'];
+  }
+
 }
 
