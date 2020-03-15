@@ -12,6 +12,7 @@ class Location {
           .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       latitude = position.latitude;
       longitude = position.longitude;
+      return ({latitude, longitude});
     } catch (exception) {
       print(exception);
     }

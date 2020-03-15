@@ -7,11 +7,11 @@ import 'models.dart';
 
 const maskUrl =
     'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json';
-
+// 일단은 사용안해여
 
 class GetMaskData {
 
-  Future<dynamic> getLocationMask() async {
+  Future<Stores> getLocationMask() async {
 
     Location location = Location();
     await location.getCurrentLocation();
@@ -21,11 +21,12 @@ class GetMaskData {
     // ?lat=35.9674&lng=126.71&m=500
     var maskData = await networkHelper.getData();
 
+    print(maskData['stores'][1]['lng']);
 //    print(maskData);
     return maskData['stores'];
   }
 
-  Future<dynamic> getLocationMaskDefault() async {
+  Future<Stores> getLocationMaskDefault() async {
 
     Location location = Location();
     await location.getCurrentLocation();

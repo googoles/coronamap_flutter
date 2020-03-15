@@ -1,6 +1,7 @@
 import 'package:coronamap_flutter/main_screen.dart';
 import 'services/maskdata.dart';
 import 'package:flutter/material.dart';
+import 'services/location.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
@@ -13,20 +14,28 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
+  Location location = Location();
   @override
   void initState() {
     super.initState();
     getLocationData();
+
   }
 
-  void getLocationData() async {
+  double latitude;
+  double longitude;
 
-    var maskData = await GetMaskData().getLocationMask();
+
+  void getLocationData() async {
+    Location location = Location();
+    await location.getCurrentLocation();
+    latitude = location.latitude;
+    longitude = location.longitude;
+
+    var maskData = await Location().getCurrentLocation();
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return MainScreen(
-        locationMask: maskData,
-      );
+      return MainScreen();
     }));
   }
 
@@ -37,7 +46,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: SpinKitDoubleBounce(
           color: Colors.white,
           size: 100.0,
-        ),
+        )
+//        FutureBuilder(
+//          future: Future.delayed(Duration(seconds: 5)),
+//          builder: (c,s) => s.connectionState == ConnectionState.done
+//              ? MainScreen()
+//          : SpinKitDoubleBounce(
+//            color: Colors.white,
+//            size: 100.0,
+//          )
+//
+//          ,
+//        ),
+////        child: FlutterError.onError != null ? MainScreen()
+////         : SpinKitDoubleBounce(
+////          color: Colors.white,
+////          size: 100.0,
+////        ),
       ),
     );
   }

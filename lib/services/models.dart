@@ -1,22 +1,3 @@
-//class Store{
-//  int count;
-//  List<StoreLocation> data;
-//
-//  Store({this.count, this.data});
-//
-//  factory Store.fromJson(Map<String, dynamic> parsedJson){
-//
-//    var list = parsedJson['data'] as List;
-//    List<StoreLocation> data = list.map((i) => StoreLocation.fromJson(i)).toList();
-//
-//    return Store(
-//        count: parsedJson['count'],
-//        data: data
-//    );
-//  }
-//}
-
-
 
 class Stores{
   String addr;
