@@ -114,6 +114,14 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  GoogleMapController _controller;
+
+  void _setMapController(GoogleMapController controller) {
+    this._controller = controller;
+
+    Future.delayed(Duration(milliseconds: 3000)).then((onValue) =>
+        controller.moveCamera(CameraUpdate.newLatLngZoom(LatLng(35.9674, 126.71), 15)));
+  }
 
 
   @override
@@ -157,9 +165,12 @@ class _MainScreenState extends State<MainScreen> {
                       zoomGesturesEnabled: true,
                       rotateGesturesEnabled: true,
                       tiltGesturesEnabled: true,
+                      onMapCreated: this._setMapController,
+                      onCameraMove: (cameraPosition) => print('Movee: $cameraPosition'),
+
                       initialCameraPosition: CameraPosition(
                         target: LatLng(location.latitude, location.longitude),
-                        zoom: 16,
+                        zoom: 15,
                       )
 
 
